@@ -1,0 +1,63 @@
+.contact {
+  height: calc(100vh - 80px);
+  background-color: rgba(0, 0, 0, .4);
+  color: white;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact h1 {
+  font-size: 2.5rem;
+}
+
+.contact ul {
+  margin-left: 10px;
+  font-size: 1.2rem;
+  display: grid;
+  gap:  10px;
+  list-style: none;
+}
+
+.phone::before {
+  content: url('../assets/phone.png');
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.email::before {
+  content: url('../assets/email-svgrepo-com.svg');
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.address::before {
+  content: url('../assets/placeholder.png');
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.contact ul.social-media {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.contact ul.social-media li {
+  cursor: pointer;
+}
+
+.contact ul.social-media li img:hover {
+  width: 70px;
+  height: 70px;
+}

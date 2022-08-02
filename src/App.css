@@ -1,14 +1,15 @@
+@import './styles/about.css';
+@import './styles/contact.css';
+@import './styles/products.css';
+@import './styles/cart.css';
+
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Playfair Display SC', Georgia, 'Times New Roman', Times, serif;
   font-weight: 400;
-}
-
-.app {
-  background: url('./assets/lion-bg.png') no-repeat center/cover;
-  height: 100vh;
 }
 
 .header {
@@ -25,6 +26,11 @@
   width: 80px;
   height: 80px;
   fill: white;
+  cursor: pointer;
+}
+
+.logo:hover {
+  fill: orangered;
 }
 
 .bag {
@@ -42,6 +48,7 @@
   align-items: center;
   gap: 20px;
   list-style: none;
+  margin-right: 80px;
 }
 
 .nav ul li:not(.nav ul li:last-child) {
@@ -53,12 +60,23 @@
   color: white;
 }
 
-.nav ul li:not(.nav ul li:last-child):hover {
-  background-color: rgba(231, 65, 44, .6);
+.nav ul li:not(.nav ul li:last-child):hover::after {
+  content: '';
+  width: 100%;
+  display: block;
+  height: 2px;
+  background-color: white;
 }
 
 .nav ul li:last-child {
   cursor: pointer;
+  position: fixed;
+  right: 40px;
+}
+
+.nav ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 .home {
@@ -82,18 +100,19 @@
   padding-left: 20px;
 }
 
-.home p {
+.home a {
   margin-top: 20px;
   margin-left: 20px;
   padding: 10px 16px;
   background-color: black;
-  font-size: 1.25;
+  font-size: 1.25rem;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  color: white;
+  text-decoration: none;
 }
 
-.home p:hover {
-  background-color: rgba(231, 65, 44, .6);
-  color: white;
+.home a:hover {
+  background-color: orangered;
 }
