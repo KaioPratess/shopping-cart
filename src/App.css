@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display SC', Georgia, 'Times New Roman', Times, serif;
+  font-weight: 400;
+}
+
+.app {
+  background: url('./assets/lion-bg.png') no-repeat center/cover;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, .4);
+  gap: 40px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  fill: white;
+}
+
+.bag {
+  width: 35px;
+  height: 35px;
+  fill: white;
+}
+
+.bag:hover {
+  fill: orangered;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav ul li:not(.nav ul li:last-child) {
+  font-size: 1.25rem;
+  padding: 27px 0 26px 0;
+  width: 110px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+}
+
+.nav ul li:not(.nav ul li:last-child):hover {
+  background-color: rgba(231, 65, 44, .6);
+}
+
+.nav ul li:last-child {
+  cursor: pointer;
+}
+
+.home {
+  height: calc(100vh - 80px);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 38px;
+  padding-top: 50px;
+}
+
+.home h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.home span {
+  font-size: 1.5rem;
+  padding-left: 20px;
+}
+
+.home p {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px 16px;
+  background-color: black;
+  font-size: 1.25;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.home p:hover {
+  background-color: rgba(231, 65, 44, .6);
+  color: white;
+}
