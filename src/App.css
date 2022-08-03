@@ -72,6 +72,20 @@
   cursor: pointer;
   position: fixed;
   right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.nav ul li:last-child:hover {
+  color: orangered;
+}
+
+.cart-amount {
+  font-size: 0.75rem;
+  position: absolute;
+  top: 14px;
 }
 
 .nav ul li a {
@@ -115,4 +129,18 @@
 
 .home a:hover {
   background-color: orangered;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px bisque;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(244, 199, 132);
 }

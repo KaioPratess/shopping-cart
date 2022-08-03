@@ -1,6 +1,10 @@
-function About({setBackground}) {
+import {useEffect} from 'react'
 
-  setBackground('about')
+function About({changeBackground}) {
+
+  useEffect(() => {
+    changeBackground('about')
+  }, [])
 
   return (
     <div className="about">

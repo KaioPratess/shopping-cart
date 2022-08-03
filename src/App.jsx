@@ -15,9 +15,27 @@ import './App.css'
 function App() {
   const [background, setBackground] = useState('home')
   const [openCart, setOpenCart] = useState(false)
+  const [cart, setCart] = useState([])
 
   const style = {
     background: `url('${background === 'home' ? lionBg : background === 'products' ? lionBg2 : background === 'about' ? deerBg : wildBg}') no-repeat center/cover`
+  }
+
+  const changeBackground = (component) => {
+    setBackground(component)
+  }
+
+  const addToCart = (product) => {
+    setCart(prevCart => {
+      return [
+        ...prevCart,
+        product
+      ]
+    })
+  }
+
+  const closeCart = () => {
+    setOpenCart(false)
   }
 
   return (
@@ -25,7 +43,7 @@ function App() {
       <div className="app" style={style}>
         <header className='header'>
           <div>
-            <Link to='/'>
+            <Link to='/shopping-cart/'>
               <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" className='logo'
                 width="256px" height="178px" viewBox="0 0 256 178" xmlSpace="preserve">
               <path d="M91.743,110.435l23.352,8.271c-10.104,13.361-26.13,25.42-26.13,25.42l3.598,19.688c6.566,0,11.929,5.246,12.074,11.81
@@ -43,10 +61,11 @@ function App() {
           </div>
           <nav className='nav'>
             <ul>
-              <li><Link to='/Products'>Products</Link></li>
-              <li><Link to='/Contact'>Contact</Link></li>
-              <li><Link to='/About'>About</Link></li>
-              <li>
+              <li><Link to='/shopping-cart/Products'>Products</Link></li>
+              <li><Link to='/shopping-cart/Contact'>Contact</Link></li>
+              <li><Link to='/shopping-cart/About'>About</Link></li>
+              <li onClick={() => setOpenCart(true)}>
+                  <span className='cart-amount'>{cart.length}</span>
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlnsXlink="http://www.w3.org/1999/xlink" className='bag'>
                     <g>
                       <g>
@@ -59,12 +78,12 @@ function App() {
           </nav>
         </header>
           <Routes>
-            <Route path='/' element={<Home setBackground={setBackground}/>}/>
-            <Route path='/Products' element={<Products setBackground={setBackground}/>}/>
-            <Route path='/Contact' element={<Contact setBackground={setBackground}/>}/>
-            <Route path='/About' element={<About setBackground={setBackground}/>}/>
+            <Route path='/shopping-cart/' element={<Home changeBackground={changeBackground}/>}/>
+            <Route path='/shopping-cart/Products' element={<Products changeBackground={changeBackground} addToCart={addToCart} cart={cart}/>}/>
+            <Route path='/shopping-cart/Contact' element={<Contact changeBackground={changeBackground}/>}/>
+            <Route path='/shopping-cart/About' element={<About changeBackground={changeBackground}/>}/>
           </Routes>
-            <Cart />
+           {openCart && <Cart closeCart={closeCart} cart={cart}/>} 
       </div>
     </BrowserRouter>
   )

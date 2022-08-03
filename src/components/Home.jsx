@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
+import {useEffect} from 'react'
 
-function Home({setBackground}) {
+function Home({changeBackground, cart}) {
  
-  setBackground('home')
+  useEffect(() => {
+    changeBackground('home')
+  }, [])
 
   return (
     <div className="home">

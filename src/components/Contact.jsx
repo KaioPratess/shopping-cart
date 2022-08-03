@@ -1,11 +1,13 @@
 import facebook from '../assets/facebook.png'
 import twitter from '../assets/twitter.png'
 import instagram from '../assets/instagram.png'
+import {useEffect} from 'react'
 
-function Contact({setBackground}) {
+function Contact({changeBackground}) {
 
-  setBackground('contact')
-
+  useEffect(() => {
+    changeBackground('contact')
+  }, [])
 
   return (
     <div className="contact">
