@@ -2,17 +2,20 @@ import { useState, useEffect } from 'react'
 
 function Cart({cart, closeCart, deleteProduct}) {
   const [total, setTotal] = useState(0)
-  const [amount, setAmount] = useState(1)
+  const [amounts, setAmounts] = useState({})
 
   const productsCart = cart.map((product, index) => {
+    useEffect(() => {
+      setAmounts(prevAmount => ({...prevAmount, [index]: 1}))
+    }, [])
+    
     const increase = () => {
-      setAmount(prevAmount => prevAmount < 10 ? prevAmount + 1 : 10)
+      setAmounts(prevAmount => ({...prevAmount, [index]: prevAmount[index] + 1}))
       setTotal(prevTotal => prevTotal + +product.price)
     }
   
     const decrease = () => {
-      console.log(index)
-      setAmount(prevAmount => prevAmount > 0 ? prevAmount - 1 : 0)
+      setAmounts(prevAmount => ({...prevAmount, [index]: prevAmount[index] - 1}))
       setTotal(prevTotal => prevTotal - +product.price)
     }
 
@@ -21,10 +24,10 @@ function Cart({cart, closeCart, deleteProduct}) {
           <div><img src={product.img} alt="Product Image" /></div>
           <p>{product.description}</p>
           <span className='delete' onClick={(e) => deleteProduct(e.target.parentElement.attributes[1].textContent)}>🗑</span>
-          <span>${product.price * amount}</span>
+          <span>${product.price * amounts[index]}</span>
           <div className='amount'>
             <span className='decrease' onClick={decrease}>-</span>
-            <span>{amount}</span>
+            <span>{amounts[index]}</span>
             <span className='increase' onClick={increase}>+</span>
           </div>
         </div>
