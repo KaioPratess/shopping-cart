@@ -34,6 +34,17 @@ function App() {
     })
   }
 
+  const deleteFromCart = (id) => {
+    const newCart = []
+    for(let i = 0; i < cart.length; i++) {
+      if(cart[i].id !== id) {
+        newCart.push(cart[i])
+      } 
+    }
+    setCart([...newCart])
+    console.log(cart)
+  }
+
   const closeCart = () => {
     setOpenCart(false)
   }
@@ -83,7 +94,7 @@ function App() {
             <Route path='/shopping-cart/Contact' element={<Contact changeBackground={changeBackground}/>}/>
             <Route path='/shopping-cart/About' element={<About changeBackground={changeBackground}/>}/>
           </Routes>
-           {openCart && <Cart closeCart={closeCart} cart={cart}/>} 
+           {openCart && <Cart closeCart={closeCart} cart={cart} deleteProduct={deleteFromCart}/>} 
       </div>
     </BrowserRouter>
   )

@@ -1,25 +1,26 @@
 import { useState, useEffect } from 'react'
 
-function Cart({cart, closeCart}) {
+function Cart({cart, closeCart, deleteProduct}) {
   const [total, setTotal] = useState(0)
+  const [amount, setAmount] = useState(1)
 
-  const productsCart = cart.map(product => {
-    const [amount, setAmount] = useState(1)
-
+  const productsCart = cart.map((product, index) => {
     const increase = () => {
       setAmount(prevAmount => prevAmount < 10 ? prevAmount + 1 : 10)
       setTotal(prevTotal => prevTotal + +product.price)
     }
   
     const decrease = () => {
+      console.log(index)
       setAmount(prevAmount => prevAmount > 0 ? prevAmount - 1 : 0)
       setTotal(prevTotal => prevTotal - +product.price)
     }
 
     return (
-        <div className="cart-product" key={product.id}>
+        <div className="cart-product" key={product.id} id={product.id}>
           <div><img src={product.img} alt="Product Image" /></div>
           <p>{product.description}</p>
+          <span className='delete' onClick={(e) => deleteProduct(e.target.parentElement.attributes[1].textContent)}>🗑</span>
           <span>${product.price * amount}</span>
           <div className='amount'>
             <span className='decrease' onClick={decrease}>-</span>
@@ -36,7 +37,6 @@ function Cart({cart, closeCart}) {
     }, 0)
     setTotal(totalValue)
   }, [])
-
 
   return (
     <div className='cart-bg'>
