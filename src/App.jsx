@@ -17,6 +17,7 @@ function App() {
   const [openCart, setOpenCart] = useState(false)
   const [cart, setCart] = useState([])
 
+
   const style = {
     background: `url('${background === 'home' ? lionBg : background === 'products' ? lionBg2 : background === 'about' ? deerBg : wildBg}') no-repeat center/cover`
   }
@@ -26,15 +27,30 @@ function App() {
   }
 
   const addToCart = (product) => {
-    setCart(prevCart => {
-      return [
-        ...prevCart,
-        product
-      ]
+    const isInCart = cart.find((currentValue) => {
+      return currentValue.id === product.id
     })
+
+    if(isInCart) {
+      return
+    } else {
+      product.e.target.textContent = 'In Cart'
+      product.e.target.style.background = 'orangered'
+      product.e.target.style.color = 'white'
+      setCart(prevCart => {
+        return [
+          ...prevCart,
+          product
+        ]
+      })
+    }
   }
 
   const deleteFromCart = (id) => {
+    const product = cart.find(currentValue => currentValue.id === id)
+    product.e.target.textContent = 'Add to Cart'
+    product.e.target.style.background = 'white'
+    product.e.target.style.color = 'black'
     const newCart = []
     for(let i = 0; i < cart.length; i++) {
       if(cart[i].id !== id) {
@@ -42,7 +58,6 @@ function App() {
       } 
     }
     setCart([...newCart])
-    console.log(cart)
   }
 
   const closeCart = () => {

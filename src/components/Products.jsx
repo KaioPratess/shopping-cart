@@ -1,5 +1,5 @@
 import products from '../db'
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
 
 function Products({changeBackground, addToCart}) {
   const cards = products.map(product => {
@@ -9,7 +9,7 @@ function Products({changeBackground, addToCart}) {
       const description = nodes[1].textContent
       const price = nodes[2].textContent.slice(1)
       const id = e.target.parentElement.attributes.id.textContent
-      addToCart({img, description, price, id})
+      addToCart({img, description, price, id, e})
     }
 
     return (
