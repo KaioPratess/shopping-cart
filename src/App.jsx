@@ -16,6 +16,7 @@ function App() {
   const [background, setBackground] = useState('home')
   const [openCart, setOpenCart] = useState(false)
   const [cart, setCart] = useState([])
+  const [checkout, setCheckout] = useState(false)
 
 
   const style = {
@@ -24,6 +25,10 @@ function App() {
 
   const changeBackground = (component) => {
     setBackground(component)
+  }
+
+  const changeCheckout = () => {
+    setCheckout(true)
   }
 
   const addToCart = (product) => {
@@ -44,6 +49,12 @@ function App() {
         ]
       })
     }
+  }
+
+  const returnToHome = () => {
+    setCheckout(false)
+    setCart([])
+    setOpenCart(false)
   }
 
   const deleteFromCart = (id) => {
@@ -109,7 +120,7 @@ function App() {
             <Route path='/shopping-cart/Contact' element={<Contact changeBackground={changeBackground}/>}/>
             <Route path='/shopping-cart/About' element={<About changeBackground={changeBackground}/>}/>
           </Routes>
-           {openCart && <Cart closeCart={closeCart} cart={cart} deleteProduct={deleteFromCart}/>} 
+           {openCart && <Cart closeCart={closeCart} cart={cart} deleteProduct={deleteFromCart} checkout={checkout} setCheckout={changeCheckout} returnToHome={returnToHome}/>} 
       </div>
     </BrowserRouter>
   )

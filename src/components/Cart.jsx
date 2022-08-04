@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
-function Cart({cart, closeCart, deleteProduct}) {
+function Cart({cart, closeCart, deleteProduct, checkout, setCheckout, returnToHome}) {
   const [total, setTotal] = useState(0)
   const [amounts, setAmounts] = useState({})
+
 
   const productsCart = cart.map((product, index) => {
 
@@ -23,7 +25,7 @@ function Cart({cart, closeCart, deleteProduct}) {
         <div className="cart-product" key={product.id} id={product.id}>
           <div><img src={product.img} alt="Product Image" /></div>
           <p>{product.description}</p>
-          <span className='delete' onClick={(e) => deleteProduct(e.target.parentElement.attributes[1].textContent)}>🗑</span>
+          <span className='delete' onClick={(e) => deleteProduct(e.target.parentElement.attributes[1].textContent)}>🗑</span> 
           <span>${product.price * amounts[index]}</span>
           <div className='amount'>
             <span className='decrease' onClick={decrease}>-</span>
@@ -33,6 +35,14 @@ function Cart({cart, closeCart, deleteProduct}) {
         </div>
     )
   })
+
+  const handleCheckout = () => {
+    if(cart.length) {
+      setCheckout()
+    } else {
+      alert('Choose a product!')
+    }
+  }
 
   useEffect(() => {
     const totalValue = cart.reduce((total, currentValue) => {
@@ -46,6 +56,15 @@ function Cart({cart, closeCart, deleteProduct}) {
 
   return (
     <div className='cart-bg'>
+      { checkout
+        && 
+        <div className='checkout'>
+          <div>
+            <h1>Thanks for shopping with us!</h1>
+            <Link to='/shopping-cart/' className='return-btn' onClick={returnToHome}>Return to Home</Link>
+          </div>
+        </div>
+      }
       <div className="cart">
         <span className='close-cart' onClick={closeCart}>X</span>
         <h1>Cart</h1>
@@ -54,7 +73,7 @@ function Cart({cart, closeCart, deleteProduct}) {
           <span>Total:</span>
           <span>${total}</span>
         </div>
-        <button type='button' className='checkout-btn'>Checkout</button>
+        <button type='button' className='checkout-btn' onClick={handleCheckout}>Checkout</button>
       </div>
     </div>
   )

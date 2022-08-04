@@ -11,7 +11,7 @@ function Home({changeBackground, cart}) {
     <div className="home">
       <h1>Welcome to the Wild Store</h1>
       <span>The best customized clothes in South Carolina</span>
-      <Link to='/Products'>Visit the Shop</Link>
+      <Link to='/shopping-cart/Products'>Visit the Shop</Link>
     </div>
   )
 }
