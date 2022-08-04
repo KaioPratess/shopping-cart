@@ -5,18 +5,18 @@ function Cart({cart, closeCart, deleteProduct}) {
   const [amounts, setAmounts] = useState({})
 
   const productsCart = cart.map((product, index) => {
-    useEffect(() => {
-      setAmounts(prevAmount => ({...prevAmount, [index]: 1}))
-    }, [])
-    
+
     const increase = () => {
       setAmounts(prevAmount => ({...prevAmount, [index]: prevAmount[index] + 1}))
       setTotal(prevTotal => prevTotal + +product.price)
     }
   
-    const decrease = () => {
+    const decrease = (e) => {
       setAmounts(prevAmount => ({...prevAmount, [index]: prevAmount[index] - 1}))
       setTotal(prevTotal => prevTotal - +product.price)
+      if(amounts[index] === 0) {
+        deleteProduct(e.target.parentElement.parentElement.attributes[1].textContent)
+      }
     }
 
     return (
@@ -39,6 +39,9 @@ function Cart({cart, closeCart, deleteProduct}) {
       return total + +currentValue.price
     }, 0)
     setTotal(totalValue)
+    for(let i = 0; i < cart.length; i++) {
+      setAmounts(prevAmount => ({...prevAmount, [i]: 1}))
+    }
   }, [])
 
   return (
