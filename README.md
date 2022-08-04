@@ -14,6 +14,6 @@
 <ul>
   <li>Function Components</li>
   <li>State and Props</li>
-  <li>Router</li>
+  <li>Client-side Routing</li>
   <li>Hooks</li>
 </ul>
