@@ -42,7 +42,7 @@ function Cart({cart, closeCart, deleteProduct}) {
     for(let i = 0; i < cart.length; i++) {
       setAmounts(prevAmount => ({...prevAmount, [i]: 1}))
     }
-  }, [])
+  }, [cart])
 
   return (
     <div className='cart-bg'>
