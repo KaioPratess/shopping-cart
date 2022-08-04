@@ -1,4 +1,4 @@
-<h1>Shopping Cart</h1>
+<h1><a href='https://kaiopratess.github.io/shopping-cart/'>Shopping Cart<a/></h1>
 
 <h2>What is this project about?</h2>
 <p>This project is a small clothing shop. The goal is to use React Router to change between pages and implement a shopping cart.</p>
