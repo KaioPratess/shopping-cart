@@ -1,4 +1,4 @@
-<h1 align="center">Tesla Clone</h1>
+<h1 align="center">Shopping Cart</h1>
 
 <div align="center">
    Solution for a challenge from  <a href="https://www.theodinproject.com" target="_blank">The Odin Project</a>.
